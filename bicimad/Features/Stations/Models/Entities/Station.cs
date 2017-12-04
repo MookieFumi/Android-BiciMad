@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bicimad.Models
+namespace bicimad.Features.Stations.Models.Entities
 {
     public class Station
     {

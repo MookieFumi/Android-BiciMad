@@ -1,11 +1,11 @@
-﻿using bicimad.Models;
-using bicimad.Models.Services;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using System.Threading.Tasks;
+using bicimad.Features.Stations.Models.Entities;
+using bicimad.Features.Stations.Models.Services;
 
-namespace bicimad
+namespace bicimad.Features.Stations
 {
     public class StationsPresenter : IStationsPresenter
     {

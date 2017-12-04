@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using Newtonsoft.Json;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using bicimad.Features.Stations.Models.Entities;
+using Newtonsoft.Json;
 
-namespace bicimad.Models.Services
+namespace bicimad.Features.Stations.Models.Services
 {
     public class StationsService
     {

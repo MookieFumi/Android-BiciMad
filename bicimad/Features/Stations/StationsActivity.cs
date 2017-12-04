@@ -2,13 +2,10 @@
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using bicimad.Models;
 using Android.Widget;
-using Android.Graphics;
-using Android.Content;
-using Android.Support.V4.App;
+using bicimad.Features.Stations.Models.Entities;
 
-namespace bicimad
+namespace bicimad.Features.Stations
 {
     [Activity(MainLauncher = true)]
     public class StationsActivity : AppCompatActivity, IStationsView

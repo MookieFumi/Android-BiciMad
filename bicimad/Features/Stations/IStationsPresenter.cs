@@ -1,8 +1,8 @@
-﻿using bicimad.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using bicimad.Features.Stations.Models.Entities;
 
-namespace bicimad
+namespace bicimad.Features.Stations
 {
     public interface IStationsPresenter
     {

@@ -1,12 +1,10 @@
-﻿using Android.App;
-using Android.OS;
-using bicimad.Models;
-using Android.Widget;
+﻿using Android.OS;
 using Android.Views;
-using Android.Graphics;
+using Android.Widget;
+using bicimad.Features.Stations.Models.Entities;
 using bicimad.Infrastructure;
 
-namespace bicimad
+namespace bicimad.Features.Stations
 {
     public class StationDialogFragment : Android.Support.V4.App.DialogFragment
     {
@@ -50,6 +48,8 @@ namespace bicimad
 
             var free = view.FindViewById<TextView>(Resource.Id.Free);
             free.Text = Station.FreeBases.ToString();
+
+            
         }
     }
 }

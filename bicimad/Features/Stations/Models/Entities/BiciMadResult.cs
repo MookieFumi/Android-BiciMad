@@ -1,4 +1,4 @@
-﻿namespace bicimad.Models
+﻿namespace bicimad.Features.Stations.Models.Entities
 {
     public class BiciMadResult
     {

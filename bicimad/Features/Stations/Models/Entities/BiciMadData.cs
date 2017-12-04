@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace bicimad.Models
+namespace bicimad.Features.Stations.Models.Entities
 {
     public class BiciMadData
     {

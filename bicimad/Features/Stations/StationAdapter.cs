@@ -1,12 +1,12 @@
 ﻿using System;
-using bicimad.Models;
-using Android.Support.V7.Widget;
+using System.Linq;
 using Android.Content;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using System.Linq;
+using bicimad.Features.Stations.Models.Entities;
 
-namespace bicimad
+namespace bicimad.Features.Stations
 {
     public class StationAdapter : RecyclerView.Adapter
     {

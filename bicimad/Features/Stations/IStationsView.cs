@@ -1,6 +1,6 @@
-﻿using bicimad.Models;
+﻿using bicimad.Features.Stations.Models.Entities;
 
-namespace bicimad
+namespace bicimad.Features.Stations
 {
     public interface IStationsView
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
@@ -8,7 +9,7 @@ using bicimad.Features.Stations.Models.Entities;
 
 namespace bicimad.Features.Stations
 {
-    [Activity(MainLauncher = true)]
+    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class StationsActivity : AppCompatActivity, IStationsView
     {
         private StationAdapter _stationAdapter;

@@ -49,6 +49,9 @@ namespace bicimad.Features.Stations
         {
             base.OnViewCreated(view, savedInstanceState);
 
+            var number = view.FindViewById<TextView>(Resource.Id.Number);
+            number.Text = Station.Number;
+
             var name = view.FindViewById<TextView>(Resource.Id.Name);
             name.Text = Station.Name;
             var address = view.FindViewById<TextView>(Resource.Id.Address);
@@ -79,7 +82,7 @@ namespace bicimad.Features.Stations
             _map = googleMap;
 
             var latLng = new LatLng(Station.Latitude, Station.Longitude);
-            var zoom = CameraUpdateFactory.NewLatLngZoom(latLng, 18);
+            var zoom = CameraUpdateFactory.NewLatLngZoom(latLng, 17);
             _map.MoveCamera(zoom);
 
             var options = new MarkerOptions();

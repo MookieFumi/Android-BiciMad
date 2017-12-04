@@ -11,15 +11,15 @@ namespace bicimad.Features.Stations
 {
     public class StationDialogFragment : Android.Support.V4.App.DialogFragment, IOnMapReadyCallback
     {
-        public Station Station { get; private set; }
+        private Station _station;
         private GoogleMap _map;
         private SupportMapFragment _mapFragment;
 
-        internal static StationDialogFragment NewInstance(Station station)
+        internal static StationDialogFragment NewInstance( Station station)
         {
             return new StationDialogFragment
             {
-                Station = station
+                _station = station,
             };
         }
 
@@ -50,21 +50,21 @@ namespace bicimad.Features.Stations
             base.OnViewCreated(view, savedInstanceState);
 
             var number = view.FindViewById<TextView>(Resource.Id.Number);
-            number.Text = Station.Number;
+            number.Text = _station.Number;
 
             var name = view.FindViewById<TextView>(Resource.Id.Name);
-            name.Text = Station.Name;
+            name.Text = _station.Name;
             var address = view.FindViewById<TextView>(Resource.Id.Address);
-            address.Text = Station.Address;
+            address.Text = _station.Address;
 
             var total = view.FindViewById<TextView>(Resource.Id.Total);
-            total.Text = Station.TotalBases.ToString();
+            total.Text = _station.TotalBases.ToString();
 
             var dock = view.FindViewById<TextView>(Resource.Id.Dock);
-            dock.Text = Station.DockBikes.ToString();
+            dock.Text = _station.DockBikes.ToString();
 
             var free = view.FindViewById<TextView>(Resource.Id.Free);
-            free.Text = Station.FreeBases.ToString();
+            free.Text = _station.FreeBases.ToString();
 
             SetupMap();
         }
@@ -81,13 +81,13 @@ namespace bicimad.Features.Stations
         {
             _map = googleMap;
 
-            var latLng = new LatLng(Station.Latitude, Station.Longitude);
+            var latLng = new LatLng(_station.Latitude, _station.Longitude);
             var zoom = CameraUpdateFactory.NewLatLngZoom(latLng, 17);
             _map.MoveCamera(zoom);
 
             var options = new MarkerOptions();
             options.SetPosition(latLng);
-            options.SetTitle(Station.Number);
+            options.SetTitle(_station.Number);
             _map.AddMarker(options);
         }
     }

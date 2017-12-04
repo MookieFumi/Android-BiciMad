@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+    android:id="@+id/Update"
+    android:icon="@drawable/ic_action_refresh"
+    android:title="Update"
+    app:showAsAction="always" />
+  <item
+    android:id="@+id/About"
+    android:icon="@drawable/ic_action_info"
+    android:title="About"
+    app:showAsAction="never" />
+</menu>

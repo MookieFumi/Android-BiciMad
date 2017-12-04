@@ -2032,58 +2032,64 @@ namespace bicimad
 			public const int googleg_standard_color_18 = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_bike_busy = 2130837609;
+			public const int ic_action_info = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_bike_free = 2130837610;
+			public const int ic_action_refresh = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_bike_total = 2130837611;
+			public const int ic_bike_busy = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_not_available = 2130837612;
+			public const int ic_bike_free = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int notification_action_background = 2130837613;
+			public const int ic_bike_total = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int notification_bg = 2130837614;
+			public const int ic_not_available = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int notification_bg_low = 2130837615;
+			public const int notification_action_background = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int notification_bg_low_normal = 2130837616;
+			public const int notification_bg = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int notification_bg_low_pressed = 2130837617;
+			public const int notification_bg_low = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int notification_bg_normal = 2130837618;
+			public const int notification_bg_low_normal = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int notification_bg_normal_pressed = 2130837619;
+			public const int notification_bg_low_pressed = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int notification_icon_background = 2130837620;
-			
-			// aapt resource value: 0x7f020079
-			public const int notification_template_icon_bg = 2130837625;
-			
-			// aapt resource value: 0x7f02007a
-			public const int notification_template_icon_low_bg = 2130837626;
+			public const int notification_bg_normal = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int notification_tile_bg = 2130837621;
+			public const int notification_bg_normal_pressed = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int notify_panel_notification_icon_bg = 2130837622;
+			public const int notification_icon_background = 2130837622;
+			
+			// aapt resource value: 0x7f02007b
+			public const int notification_template_icon_bg = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int notification_template_icon_low_bg = 2130837628;
 			
 			// aapt resource value: 0x7f020077
-			public const int tooltip_frame_dark = 2130837623;
+			public const int notification_tile_bg = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int tooltip_frame_light = 2130837624;
+			public const int notify_panel_notification_icon_bg = 2130837624;
+			
+			// aapt resource value: 0x7f020079
+			public const int tooltip_frame_dark = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int tooltip_frame_light = 2130837626;
 			
 			static Drawable()
 			{
@@ -2100,6 +2106,9 @@ namespace bicimad
 			
 			// aapt resource value: 0x7f09002f
 			public const int ALT = 2131296303;
+			
+			// aapt resource value: 0x7f090090
+			public const int About = 2131296400;
 			
 			// aapt resource value: 0x7f090087
 			public const int Address = 2131296391;
@@ -2139,6 +2148,9 @@ namespace bicimad
 			
 			// aapt resource value: 0x7f090088
 			public const int Total = 2131296392;
+			
+			// aapt resource value: 0x7f09008f
+			public const int Update = 2131296399;
 			
 			// aapt resource value: 0x7f090074
 			public const int action0 = 2131296372;
@@ -2730,6 +2742,22 @@ namespace bicimad
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int StationsMenu = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

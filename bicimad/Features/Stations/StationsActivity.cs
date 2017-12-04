@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -10,8 +11,8 @@ using bicimad.Features.Stations.Models.Entities;
 
 namespace bicimad.Features.Stations
 {
-    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class StationsActivity : AppCompatActivity, IStationsView
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    public class StationsActivity : AppCompatActivity
     {
         private RelativeLayout _toolbar;
         private StationAdapter _stationAdapter;
@@ -26,24 +27,24 @@ namespace bicimad.Features.Stations
 
             SetupToolbar();
 
-            _presenter = new StationsPresenter(this);
-            _presenter.StationsLoaded += (sender, e) =>
-            {
-                Toast.MakeText(this, $"Total stations: {e}", ToastLength.Short).Show();
-                _stationAdapter.NotifyDataSetChanged();
-            };
+            //_presenter = new StationsPresenter(this);
+            //_presenter.StationsLoaded += (sender, e) =>
+            //{
+            //    Toast.MakeText(this, $"Total stations: {e}", ToastLength.Short).Show();
+            //    _stationAdapter.NotifyDataSetChanged();
+            //};
 
-            var recyclerView = FindViewById<RecyclerView>(Resource.Id.StationRecyclerView);
-            recyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
+            //var recyclerView = FindViewById<RecyclerView>(Resource.Id.StationRecyclerView);
+            //recyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
-            _stationAdapter = new StationAdapter(this, _presenter);
-            _stationAdapter.StationClicked += (sender, station) =>
-            {
-                OnStationClick(station);
-            };
-            recyclerView.SetAdapter(_stationAdapter);
+            //_stationAdapter = new StationAdapter(this, _presenter);
+            //_stationAdapter.StationClicked += (sender, station) =>
+            //{
+            //    OnStationClick(station);
+            //};
+            //recyclerView.SetAdapter(_stationAdapter);
 
-            await _presenter.GetStationsAsync();
+            //await _presenter.GetStationsAsync();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

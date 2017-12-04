@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
@@ -14,8 +15,16 @@ namespace bicimad.Features.Stations
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Stations);
+            try
+            {
+                base.OnCreate(savedInstanceState);
+                SetContentView(Resource.Layout.Stations);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
             SetupToolbar();
 
             var presenter = new StationsPresenter(this);

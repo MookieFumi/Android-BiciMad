@@ -2392,26 +2392,8 @@ namespace bicimad
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020086
-			public const int avd_hide_password_1 = 2130837638;
-			
-			// aapt resource value: 0x7f020087
-			public const int avd_hide_password_2 = 2130837639;
-			
-			// aapt resource value: 0x7f020088
-			public const int avd_hide_password_3 = 2130837640;
-			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
-			
-			// aapt resource value: 0x7f020089
-			public const int avd_show_password_1 = 2130837641;
-			
-			// aapt resource value: 0x7f02008a
-			public const int avd_show_password_2 = 2130837642;
-			
-			// aapt resource value: 0x7f02008b
-			public const int avd_show_password_3 = 2130837643;
 			
 			// aapt resource value: 0x7f020055
 			public const int border = 2130837589;
@@ -2600,8 +2582,14 @@ namespace bicimad
 			// aapt resource value: 0x7f0a00bb
 			public const int Name = 2131361979;
 			
+			// aapt resource value: 0x7f0a00a5
+			public const int NavigationView = 2131361957;
+			
 			// aapt resource value: 0x7f0a00ba
 			public const int Number = 2131361978;
+			
+			// aapt resource value: 0x7f0a00b9
+			public const int ProgressBarLayout = 2131361977;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int SHIFT = 2131361856;
@@ -2611,6 +2599,9 @@ namespace bicimad
 			
 			// aapt resource value: 0x7f0a00c1
 			public const int StationRecyclerView = 2131361985;
+			
+			// aapt resource value: 0x7f0a00a3
+			public const int Toolbar = 2131361955;
 			
 			// aapt resource value: 0x7f0a00bd
 			public const int Total = 2131361981;
@@ -2903,9 +2894,6 @@ namespace bicimad
 			// aapt resource value: 0x7f0a0031
 			public const int multiply = 2131361841;
 			
-			// aapt resource value: 0x7f0a00a5
-			public const int nav_view = 2131361957;
-			
 			// aapt resource value: 0x7f0a009c
 			public const int navigation_header_container = 2131361948;
 			
@@ -2938,9 +2926,6 @@ namespace bicimad
 			
 			// aapt resource value: 0x7f0a0056
 			public const int pin = 2131361878;
-			
-			// aapt resource value: 0x7f0a00b9
-			public const int progressBar = 2131361977;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -3115,9 +3100,6 @@ namespace bicimad
 			
 			// aapt resource value: 0x7f0a0078
 			public const int title_template = 2131361912;
-			
-			// aapt resource value: 0x7f0a00a3
-			public const int toolbar = 2131361955;
 			
 			// aapt resource value: 0x7f0a0048
 			public const int top = 2131361864;

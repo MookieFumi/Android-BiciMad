@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Support.V4.View;
-using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -14,33 +11,37 @@ using bicimad.Features.Stations;
 using bicimad.Features.Stations.Models.Entities;
 using bicimad.Infrastructure.Transformers;
 using Java.Lang;
+using bicimad.Features.Stations.Presenters;
 
 namespace bicimad
 {
     [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity, IStationsView
     {
+        private RelativeLayout _progressBarLayout;
+        private Android.Support.V7.Widget.Toolbar _toolbar;
+        private ViewPager _viewPager;
         private StationsPresenter _presenter;
+        private NoFreeStationsPresenter _lowLightStationsPresenter;
+        private TopAvailableStationsPresenter _topAvailableStationsPresenter;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
-            SetupPresenter();
+            SetupToolbar();
+
+            SetupPresenters();
 
             SetupTabs();
-            SetupToolbar();
         }
 
-        private void SetupPresenter()
+        private void SetupPresenters()
         {
             _presenter = new StationsPresenter(this);
-            _presenter.StationsLoaded += (sender, e) =>
-            {
-                Toast.MakeText(this, $"Total stations: {e}", ToastLength.Short).Show();
-                //_stationAdapter.NotifyDataSetChanged();
-            };
+            _lowLightStationsPresenter = new NoFreeStationsPresenter(this);
+            _topAvailableStationsPresenter = new TopAvailableStationsPresenter(this);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -53,92 +54,63 @@ namespace bicimad
         {
             switch (item.ItemId)
             {
-                //case Android.Resource.Id.Home:
-                //    drawerLayout.OpenDrawer(GravityCompat.Start);
-                //    return true;
-                //case Resource.Id.Update:
-                //    RunOnUiThread(async () =>
-                //    {
-                //        await _presenter.GetStationsAsync();
-                //    });
-                //    break;
-                //case Resource.Id.About:
-                //    Toast.MakeText(this, "About clicked", ToastLength.Short).Show();
-                //    break;
+                case Resource.Id.Update:
+                    RunOnUiThread(async () =>
+                    {
+                        await _presenter.GetStationsAsync();
+                    });
+                    break;
+                case Resource.Id.About:
+                    Toast.MakeText(this, "About clicked", ToastLength.Short).Show();
+                    break;
             }
             return base.OnOptionsItemSelected(item);
         }
 
         private void SetupTabs()
         {
-            var mainPageAdapter = new MainPageAdapter(SupportFragmentManager, _presenter);
-            var viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
-            viewPager.Adapter = mainPageAdapter;
-            viewPager.SetPageTransformer(true, new ScaleTransformer());
+            var tabs = new List<MainPageTab>
+            {
+                new MainPageTab(StationsFragment.NewInstance(this, _presenter), "Todas") ,
+                new MainPageTab(StationsFragment.NewInstance(this, _lowLightStationsPresenter), "Poca disponibilidad") ,
+                new MainPageTab(StationsFragment.NewInstance(this, _topAvailableStationsPresenter), "Top 5")
+            };
 
-            //Attach item selected handler to navigation view
-            //var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-            //navigationView.NavigationItemSelected += (sender, args) =>
-            //{
-            //    Toast.MakeText(this, args.MenuItem.ItemId, ToastLength.Short).Show();
-
-            //};
-            //navigationView.InflateMenu(Resource.Menu.StationsMenu);
-
-            //drawerLayout = (DrawerLayout)FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
-
-
-            //_navigationView.InflateHeaderView(Resource.Layout.MainToolbar);
-
-            //// Create ActionBarDrawerToggle button and add it to the toolbar
-            //var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
-            //drawerLayout.SetDrawerListener(drawerToggle);
-            //drawerToggle.SyncState();
-
-            ////Load default screen
-            //var ft = FragmentManager.BeginTransaction();
-            //ft.AddToBackStack(null);
-            //ft.Add(Resource.Id.HomeFrameLayout, new HomeFragment());
-            //ft.Commit();
+            var mainPageAdapter = new MainPageAdapter(SupportFragmentManager, tabs);
+            _viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
+            _viewPager.Adapter = mainPageAdapter;
+            _viewPager.SetPageTransformer(true, new ScaleTransformer());
         }
 
         private void SetupToolbar()
         {
-            //var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
-            //SetSupportActionBar(toolbar);
-            //SupportActionBar.Title = GetString(Resource.String.app_name);
-
-            //SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_action_menu);
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            //SupportActionBar.SetDisplayShowHomeEnabled(true);
+            _progressBarLayout = FindViewById<RelativeLayout>(Resource.Id.ProgressBarLayout);
+            _toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
+            SetSupportActionBar(_toolbar);
+            SupportActionBar.Title = GetString(Resource.String.app_name);
         }
 
         public void OnStationClick(Station station)
         {
-            //var fragmentManager = SupportFragmentManager.BeginTransaction();
-            //var dialog = StationDialogFragment.NewInstance(station);
-            //dialog.Show(fragmentManager, nameof(StationDialogFragment));
+            var fragmentManager = SupportFragmentManager.BeginTransaction();
+            var dialog = StationDialogFragment.NewInstance(station);
+            dialog.Show(fragmentManager, nameof(StationDialogFragment));
         }
 
         public void Busy(bool busy)
         {
-            //_toolbar.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
+            _viewPager.Visibility = busy ? ViewStates.Gone : ViewStates.Visible;
+            _progressBarLayout.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
         }
     }
 
     public class MainPageAdapter : Android.Support.V4.App.FragmentPagerAdapter
     {
         private readonly List<MainPageTab> _tabs;
-        public MainPageAdapter(Android.Support.V4.App.FragmentManager fragmentManager, StationsPresenter presenter) : base(fragmentManager)
+
+        public MainPageAdapter(Android.Support.V4.App.FragmentManager fragmentManager, List<MainPageTab> tabs) : base(fragmentManager)
         {
-            //var players = new PlayersServices().GetPlayers().ToList();
-            _tabs = new List<MainPageTab>
-            {
-                new MainPageTab(StationsFragment.NewInstance(presenter), "Todas") ,
-                //new MainPageTab(PlayerListFragment.NewInstance(players), "All players") ,
-                //new MainPageTab(PlayerListFragment.NewInstance(players.Where(p =>p.Country.Equals("Spain", StringComparison.InvariantCultureIgnoreCase))), "Spanish players"),
-                //new MainPageTab(PlayerListFragment.NewInstance(players.Where(p =>p.Country.Equals("United States", StringComparison.InvariantCultureIgnoreCase))),"USA players")
-            };
+            _tabs = tabs;
         }
 
         public override int Count => _tabs.Count;
@@ -152,17 +124,17 @@ namespace bicimad
         {
             return _tabs.ElementAt(position).Fragment;
         }
+    }
 
-        public class MainPageTab
+    public class MainPageTab
+    {
+        public MainPageTab(Android.Support.V4.App.Fragment fragment, string title)
         {
-            public MainPageTab(Android.Support.V4.App.Fragment fragment, string title)
-            {
-                Fragment = fragment;
-                Title = title;
-            }
-
-            public Android.Support.V4.App.Fragment Fragment { get; }
-            public string Title { get; }
+            Fragment = fragment;
+            Title = title;
         }
+
+        public Android.Support.V4.App.Fragment Fragment { get; }
+        public string Title { get; }
     }
 }

@@ -128,7 +128,6 @@
     <Compile Include="Features\Stations\StationAdapter.cs" />
     <Compile Include="Features\Stations\IStationsView.cs" />
     <Compile Include="Features\Stations\IStationsPresenter.cs" />
-    <Compile Include="Features\Stations\StationsPresenter.cs" />
     <Compile Include="Features\Stations\Models\Entities\Activate.cs" />
     <Compile Include="Features\Stations\Models\Entities\BiciMadData.cs" />
     <Compile Include="Features\Stations\Models\Entities\BiciMadResult.cs" />
@@ -140,6 +139,10 @@
     <Compile Include="Infrastructure\DialogFragmentExtensions.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Infrastructure\Transformers\ScaleTransformer.cs" />
+    <Compile Include="Features\Stations\Presenters\StationsPresenterBase.cs" />
+    <Compile Include="Features\Stations\Presenters\NoFreeStationsPresenter.cs" />
+    <Compile Include="Features\Stations\Presenters\TopAvailableStationsPresenter.cs" />
+    <Compile Include="Features\Stations\Presenters\StationsPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -188,6 +191,7 @@
     <Folder Include="Resources\mipmap-xhdpi\" />
     <Folder Include="Resources\mipmap-xxhdpi\" />
     <Folder Include="Resources\mipmap-xxxhdpi\" />
+    <Folder Include="Features\Stations\Presenters\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\border.xml" />

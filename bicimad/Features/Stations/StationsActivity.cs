@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using bicimad.Features.Stations.Models.Entities;
+using bicimad.Features.Stations.Presenters;
 
 namespace bicimad.Features.Stations
 {
@@ -23,7 +21,7 @@ namespace bicimad.Features.Stations
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Stations);
 
-            _toolbar = FindViewById<RelativeLayout>(Resource.Id.progressBar);
+            //_toolbar = FindViewById<RelativeLayout>(Resource.Id.progressBar);
 
             SetupToolbar();
 
@@ -88,9 +86,9 @@ namespace bicimad.Features.Stations
 
         private void SetupToolbar()
         {
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
-            SetSupportActionBar(toolbar);
-            SupportActionBar.Title = GetString(Resource.String.app_name);
+            //var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
+            //SetSupportActionBar(toolbar);
+            //SupportActionBar.Title = GetString(Resource.String.app_name);
 
             //SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_action_menu);
             //SupportActionBar.SetDisplayHomeAsUpEnabled(true);

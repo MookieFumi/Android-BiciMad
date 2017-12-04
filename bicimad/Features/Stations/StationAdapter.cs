@@ -63,7 +63,7 @@ namespace bicimad.Features.Stations
             {
                 view.Click += (sender, e) => onClick(base.AdapterPosition);
 
-                   Name = view.FindViewById<TextView>(Resource.Id.Name);
+                Name = view.FindViewById<TextView>(Resource.Id.Name);
                 Address = view.FindViewById<TextView>(Resource.Id.Address);
 
                 Total = view.FindViewById<TextView>(Resource.Id.Total);

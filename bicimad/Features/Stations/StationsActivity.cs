@@ -4,6 +4,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Views;
 using Android.Widget;
 using bicimad.Features.Stations.Models.Entities;
 
@@ -12,20 +13,16 @@ namespace bicimad.Features.Stations
     [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class StationsActivity : AppCompatActivity, IStationsView
     {
+        private RelativeLayout _toolbar;
         private StationAdapter _stationAdapter;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            try
-            {
-                base.OnCreate(savedInstanceState);
-                SetContentView(Resource.Layout.Stations);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.Stations);
+
+            _toolbar = FindViewById<RelativeLayout>(Resource.Id.progressBar);
+
             SetupToolbar();
 
             var presenter = new StationsPresenter(this);
@@ -53,6 +50,11 @@ namespace bicimad.Features.Stations
             var fragmentManager = SupportFragmentManager.BeginTransaction();
             var dialog = StationDialogFragment.NewInstance(station);
             dialog.Show(fragmentManager, nameof(StationDialogFragment));
+        }
+
+        public void Busy(bool busy)
+        {
+            _toolbar.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
         }
 
         private void SetupToolbar()

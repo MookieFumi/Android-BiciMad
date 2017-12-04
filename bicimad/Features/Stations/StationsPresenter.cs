@@ -30,8 +30,12 @@ namespace bicimad.Features.Stations
 
         public async Task GetStationsAsync()
         {
+            _view.Busy(true);
+
             Stations = await _stationsService.GetStationsAsync();
-            OnStationsLoaded(Stations.Count());
+            OnStationsLoaded(Stations.Count);
+
+            _view.Busy(false);
         }
     }
 }

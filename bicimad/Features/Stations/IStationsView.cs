@@ -5,5 +5,6 @@ namespace bicimad.Features.Stations
     public interface IStationsView
     {
         void OnStationClick(Station station);
+        void Busy(bool busy);
     }
 }

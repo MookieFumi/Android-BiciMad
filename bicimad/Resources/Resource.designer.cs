@@ -2101,29 +2101,29 @@ namespace bicimad
 			// aapt resource value: 0x7f09002f
 			public const int ALT = 2131296303;
 			
-			// aapt resource value: 0x7f090086
-			public const int Address = 2131296390;
+			// aapt resource value: 0x7f090087
+			public const int Address = 2131296391;
 			
 			// aapt resource value: 0x7f090030
 			public const int CTRL = 2131296304;
 			
-			// aapt resource value: 0x7f090088
-			public const int Dock = 2131296392;
+			// aapt resource value: 0x7f090089
+			public const int Dock = 2131296393;
 			
 			// aapt resource value: 0x7f090031
 			public const int FUNCTION = 2131296305;
 			
-			// aapt resource value: 0x7f090089
-			public const int Free = 2131296393;
+			// aapt resource value: 0x7f09008a
+			public const int Free = 2131296394;
 			
 			// aapt resource value: 0x7f090032
 			public const int META = 2131296306;
 			
-			// aapt resource value: 0x7f090085
-			public const int Name = 2131296389;
+			// aapt resource value: 0x7f090086
+			public const int Name = 2131296390;
 			
-			// aapt resource value: 0x7f090084
-			public const int Number = 2131296388;
+			// aapt resource value: 0x7f090085
+			public const int Number = 2131296389;
 			
 			// aapt resource value: 0x7f090033
 			public const int SHIFT = 2131296307;
@@ -2131,14 +2131,14 @@ namespace bicimad
 			// aapt resource value: 0x7f090034
 			public const int SYM = 2131296308;
 			
+			// aapt resource value: 0x7f09008d
+			public const int StationRecyclerView = 2131296397;
+			
 			// aapt resource value: 0x7f09008c
-			public const int StationRecyclerView = 2131296396;
+			public const int Toolbar = 2131296396;
 			
-			// aapt resource value: 0x7f09008b
-			public const int Toolbar = 2131296395;
-			
-			// aapt resource value: 0x7f090087
-			public const int Total = 2131296391;
+			// aapt resource value: 0x7f090088
+			public const int Total = 2131296392;
 			
 			// aapt resource value: 0x7f090074
 			public const int action0 = 2131296372;
@@ -2332,14 +2332,14 @@ namespace bicimad
 			// aapt resource value: 0x7f090047
 			public const int list_item = 2131296327;
 			
-			// aapt resource value: 0x7f09008a
-			public const int map = 2131296394;
+			// aapt resource value: 0x7f09008b
+			public const int map = 2131296395;
 			
 			// aapt resource value: 0x7f090077
 			public const int media_actions = 2131296375;
 			
-			// aapt resource value: 0x7f09008d
-			public const int message = 2131296397;
+			// aapt resource value: 0x7f09008e
+			public const int message = 2131296398;
 			
 			// aapt resource value: 0x7f09002e
 			public const int middle = 2131296302;
@@ -2367,6 +2367,9 @@ namespace bicimad
 			
 			// aapt resource value: 0x7f09004b
 			public const int parentPanel = 2131296331;
+			
+			// aapt resource value: 0x7f090084
+			public const int progressBar = 2131296388;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -2695,28 +2698,31 @@ namespace bicimad
 			public const int notification_template_part_time = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int select_dialog_item_material = 2130903082;
+			public const int Progress = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int select_dialog_multichoice_material = 2130903083;
+			public const int select_dialog_item_material = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int select_dialog_singlechoice_material = 2130903084;
+			public const int select_dialog_multichoice_material = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int Station = 2130903085;
+			public const int select_dialog_singlechoice_material = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int StationRecyclerViewRow = 2130903086;
+			public const int Station = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int Stations = 2130903087;
+			public const int StationRecyclerViewRow = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int support_simple_spinner_dropdown_item = 2130903088;
+			public const int Stations = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int tooltip = 2130903089;
+			public const int support_simple_spinner_dropdown_item = 2130903089;
+			
+			// aapt resource value: 0x7f030032
+			public const int tooltip = 2130903090;
 			
 			static Layout()
 			{

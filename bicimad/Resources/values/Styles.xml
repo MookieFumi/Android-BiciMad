@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyTheme" parent="MyTheme.Base">
   </style>
+
+  <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+  </style>
+
+  <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="android:background">@color/colorPrimary</item>
+  </style>
+
   <style name="Divider">
     <item name="android:layout_width">1dp</item>
     <item name="android:layout_height">match_parent</item>

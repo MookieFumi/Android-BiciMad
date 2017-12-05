@@ -18,6 +18,7 @@ namespace bicimad.Features.Stations
         private RelativeLayout _progressBarLayout;
         private Android.Support.V7.Widget.Toolbar _toolbar;
         private ViewPager _viewPager;
+
         private StationsPresenter _presenter;
         private NoFreeStationsPresenter _lowLightStationsPresenter;
         private TopAvailableStationsPresenter _topAvailableStationsPresenter;
@@ -75,6 +76,7 @@ namespace bicimad.Features.Stations
 
             var mainPageAdapter = new StationsTabAdapter(SupportFragmentManager, tabs);
             _viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
+            _viewPager.OffscreenPageLimit = 3;
             _viewPager.Adapter = mainPageAdapter;
             _viewPager.SetPageTransformer(true, new ScaleTransformer());
         }

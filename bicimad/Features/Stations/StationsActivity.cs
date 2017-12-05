@@ -1,48 +1,44 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using bicimad.Features.Stations.Models.Entities;
 using bicimad.Features.Stations.Presenters;
+using bicimad.Infrastructure.Transformers;
 
 namespace bicimad.Features.Stations
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
-    public class StationsActivity : AppCompatActivity
+    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
+    public class StationsActivity : AppCompatActivity, IStationsView
     {
-        private RelativeLayout _toolbar;
-        private StationAdapter _stationAdapter;
+        private RelativeLayout _progressBarLayout;
+        private Android.Support.V7.Widget.Toolbar _toolbar;
+        private ViewPager _viewPager;
         private StationsPresenter _presenter;
+        private NoFreeStationsPresenter _lowLightStationsPresenter;
+        private TopAvailableStationsPresenter _topAvailableStationsPresenter;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Stations);
-
-            //_toolbar = FindViewById<RelativeLayout>(Resource.Id.progressBar);
+            SetContentView(Resource.Layout.Main);
 
             SetupToolbar();
 
-            //_presenter = new StationsPresenter(this);
-            //_presenter.StationsLoaded += (sender, e) =>
-            //{
-            //    Toast.MakeText(this, $"Total stations: {e}", ToastLength.Short).Show();
-            //    _stationAdapter.NotifyDataSetChanged();
-            //};
+            SetupPresenters();
 
-            //var recyclerView = FindViewById<RecyclerView>(Resource.Id.StationRecyclerView);
-            //recyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
+            SetupTabs();
+        }
 
-            //_stationAdapter = new StationAdapter(this, _presenter);
-            //_stationAdapter.StationClicked += (sender, station) =>
-            //{
-            //    OnStationClick(station);
-            //};
-            //recyclerView.SetAdapter(_stationAdapter);
-
-            //await _presenter.GetStationsAsync();
+        private void SetupPresenters()
+        {
+            _presenter = new StationsPresenter(this);
+            _lowLightStationsPresenter = new NoFreeStationsPresenter(this);
+            _topAvailableStationsPresenter = new TopAvailableStationsPresenter(this);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -55,10 +51,6 @@ namespace bicimad.Features.Stations
         {
             switch (item.ItemId)
             {
-                //case Android.Resource.Id.Home:
-                //    drawerLayout.OpenDrawer(GravityCompat.Start);
-                //    return true;
-
                 case Resource.Id.Update:
                     RunOnUiThread(async () =>
                     {
@@ -72,6 +64,29 @@ namespace bicimad.Features.Stations
             return base.OnOptionsItemSelected(item);
         }
 
+        private void SetupTabs()
+        {
+            var tabs = new List<StationsTab>
+            {
+                new StationsTab(StationsFragment.NewInstance(this, _presenter), "Todas") ,
+                new StationsTab(StationsFragment.NewInstance(this, _lowLightStationsPresenter), "Poca disponibilidad") ,
+                new StationsTab(StationsFragment.NewInstance(this, _topAvailableStationsPresenter), "Top 5")
+            };
+
+            var mainPageAdapter = new StationsTabAdapter(SupportFragmentManager, tabs);
+            _viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
+            _viewPager.Adapter = mainPageAdapter;
+            _viewPager.SetPageTransformer(true, new ScaleTransformer());
+        }
+
+        private void SetupToolbar()
+        {
+            _progressBarLayout = FindViewById<RelativeLayout>(Resource.Id.ProgressBarLayout);
+            _toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
+            SetSupportActionBar(_toolbar);
+            SupportActionBar.Title = GetString(Resource.String.app_name);
+        }
+
         public void OnStationClick(Station station)
         {
             var fragmentManager = SupportFragmentManager.BeginTransaction();
@@ -81,18 +96,8 @@ namespace bicimad.Features.Stations
 
         public void Busy(bool busy)
         {
-            _toolbar.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
-        }
-
-        private void SetupToolbar()
-        {
-            //var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
-            //SetSupportActionBar(toolbar);
-            //SupportActionBar.Title = GetString(Resource.String.app_name);
-
-            //SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_action_menu);
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            //SupportActionBar.SetDisplayShowHomeEnabled(true);
+            _viewPager.Visibility = busy ? ViewStates.Gone : ViewStates.Visible;
+            _progressBarLayout.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
         }
     }
 }
